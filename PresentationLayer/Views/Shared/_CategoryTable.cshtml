@@ -1,0 +1,42 @@
+﻿@using BusinessLogicLayer.ServiceContracts.DTO
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            <span class="glyphicon glyphicon-th"></span>
+            <span>All Categories</span>
+        </strong>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" style="width: 50px;">#</th>
+                    <th>Categories</th>
+                    <th class="text-center" style="width: 100px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int index = 0;
+
+                    foreach (CategoryResponse? categoryResponse in Model.categoryResponse)
+                    {
+                        index++;
+                        <tr>
+                            <td class="text-center">@index</td>
+                            <td>@categoryResponse?.CategoryName</td>
+                            <td>
+                                <a asp-controller="Category" asp-action="Edit" asp-route-ID="@categoryResponse?.ID"><i class="fa fa-edit"></i></a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-ID="@categoryResponse?.ID"><i class="fa fa-trash text-danger"></i></a>
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -6,7 +6,7 @@
 @model CategoryViewModel
 
 
-<form method="post" asp-controller="Category" asp-action="Create">
+<form method="post" asp-controller="Category" asp-action="Edit">
 
     <div class="row panel-container">
         <div class="col-md-5">
@@ -14,25 +14,26 @@
                 <div class="panel-heading">
                     <strong>
                         <span class="glyphicon glyphicon-th"></span>
-                        <span>Add New Category</span>
+                        <span>Update a Category</span>
                     </strong>
                 </div>
                 <form>
                     <div class="panel-body">
                         <div class="form-group">
-                            <input type="text" asp-for="categoryAddRequest.CategoryName" class="form-control" placeholder="Category Name">
+                            <input type="hidden" asp-for="categoryUpdateRequest.ID" />
+                            <input type="text" asp-for="categoryUpdateRequest.CategoryName" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Add Category</button>
+                        <button type="submit" class="btn btn-primary mt-2">Update</button>
                     </div>
                 </form>
-                   
+
             </div>
         </div>
 
         <div class="col-md-7">
 
-            @await Html.PartialAsync("_CategoryTable")
-          
+            @await Html.PartialAsync("_CategoryTable");
+
         </div>
     </div>
 
