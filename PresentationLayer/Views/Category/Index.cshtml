@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Category";
+}
+
+
+<form method="get" asp-controller="Category" asp-action="Index">
+
+    <div class="row panel-container">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                        <span class="glyphicon glyphicon-th"></span>
+                        <span>Add New Category</span>
+                    </strong>
+                </div>
+                <form>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="text" name="categoryName" class="form-control" placeholder="Category Name">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Add Category</button>
+                    </div>
+                </form>
+                   
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                        <span class="glyphicon glyphicon-th"></span>
+                        <span>All Categories</span>
+                    </strong>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 50px;">#</th>
+                                <th>Categories</th>
+                                <th class="text-center" style="width: 100px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Laptop</td>
+                                <td>
+                                    <a href="#"><i class="fa fa-trash text-danger"></i></a>
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Laptop</td>
+                                <td>
+                                    <a href="#"><i class="fa fa-trash text-danger"></i></a>
+                                    <a href="#"><i class="fa fa-edit"></i></a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

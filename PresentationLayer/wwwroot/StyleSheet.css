@@ -1,0 +1,17 @@
+﻿
+.panel-heading {
+    background-color: #f3f3f3;
+    padding:10px 10px 10px 10px;
+}
+
+.panel {
+    border: 1px solid #f3f3f3;
+}
+
+.panel-body{
+    padding:15px;
+    background-color:white;
+}
+.panel-container{
+    padding:20px;
+}
