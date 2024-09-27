@@ -4,6 +4,7 @@ using DataAccessLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240926171651_products")]
+    partial class products
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +26,7 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("DataAccessLayer.Entities.Category", b =>
                 {
-                    b.Property<Guid>("CategoryID")
+                    b.Property<Guid?>("CategoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -42,28 +44,17 @@ namespace DataAccessLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("BuyingPrice")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("CategoryID")
+                    b.Property<Guid?>("CountryID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("ProductAddedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ProductName")
+                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<double>("SellingPrice")
-                        .HasColumnType("float");
-
                     b.HasKey("ProductID");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CountryID");
 
                     b.ToTable("Products");
                 });
@@ -72,7 +63,7 @@ namespace DataAccessLayer.Migrations
                 {
                     b.HasOne("DataAccessLayer.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .HasForeignKey("CountryID");
 
                     b.Navigation("Category");
                 });

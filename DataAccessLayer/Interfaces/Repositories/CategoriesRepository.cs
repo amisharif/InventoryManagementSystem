@@ -28,7 +28,7 @@ namespace DataAccessLayer.Interfaces.Repositories
 
         public async Task<bool> DeleteCategoryByID(Guid id)
         {
-            _db.Categories.RemoveRange(_db.Categories.Where(temp => temp.ID == id));
+            _db.Categories.RemoveRange(_db.Categories.Where(temp => temp.CategoryID == id));
             int rowsDeleted = await _db.SaveChangesAsync();
 
             return rowsDeleted > 0;
@@ -41,7 +41,7 @@ namespace DataAccessLayer.Interfaces.Repositories
 
         public async Task<Category> GetCategoryByID(Guid id)
         {
-            Category? category = await _db.Categories.FirstOrDefaultAsync(temp => temp.ID == id);
+            Category? category = await _db.Categories.FirstOrDefaultAsync(temp => temp.CategoryID == id);
 
             if (category == null) throw new ArgumentException(nameof(category.CategoryName));
             return category;
@@ -50,7 +50,7 @@ namespace DataAccessLayer.Interfaces.Repositories
         public async Task<Category> UpdateCategory(Category category)
         {
 
-           Category?matchingCategory = await _db.Categories.FirstOrDefaultAsync(category => category.ID == category.ID);
+           Category?matchingCategory = await _db.Categories.FirstOrDefaultAsync(category => category.CategoryID == category.CategoryID);
             if (matchingCategory == null) return category;
             matchingCategory.CategoryName= category.CategoryName;
 

@@ -24,7 +24,7 @@ namespace BusinessLogicLayer.Services
                 throw new ArgumentNullException(nameof(categoryAddRequest));
             }
             Category category = categoryAddRequest.ToCategory();
-            category.ID = Guid.NewGuid();
+            category.CategoryID = Guid.NewGuid();
 
             await _categoiresRepository.AddCategory(category);
            

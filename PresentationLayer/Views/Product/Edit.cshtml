@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Product Create";
+}
+
+
+@model ProductUpdateRequest
+
+<div class="w-50 mx-auto mt-5">
+    <div class="panel panel-default">
+        <div class="panel-heading mb-3">
+            <strong>
+                <span>Update Product</span>
+            </strong>
+        </div>
+        <form asp-controller="Product" asp-action="Edit" method="post">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="ProductID"/>
+                            <label asp-for="ProductName">Product Name</label>
+                            <input asp-for="ProductName" class="form-control" placeholder="Product Name">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label asp-for="Category">Product Category</label>
+                            <select asp-for="CategoryID" class="form-control" asp-items="@ViewBag.Categories">
+                                <option value="">Select category</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-4 mt-4">
+                        <div class="form-group">
+                            <label asp-for="Quantity">Quantity</label>
+                            <input asp-for="Quantity" class="form-control" placeholder="Quantity">
+                        </div>
+                    </div>
+                    <div class="col-4 mt-4">
+                        <div class="form-group">
+                            <label asp-for="BuyingPrice">Buying Price</label>
+                            <input asp-for="BuyingPrice" class="form-control" placeholder="Buying Price">
+                        </div>
+                    </div>
+                    <div class="col-4 mt-4">
+                        <div class="form-group">
+                            <label asp-for="SellingPrice">Selling Price</label>
+                            <input asp-for="SellingPrice" class="form-control" placeholder="Selling Price">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4 w-100 mb-5">Update Product</button>
+
+
+            </div>
+        </form>
+
+    </div>
+</div>

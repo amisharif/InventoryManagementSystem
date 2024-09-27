@@ -64,7 +64,7 @@ namespace PresentationLayer.Controllers
         public async Task<IActionResult> Edit(CategoryUpdateRequest categoryUpdateRequest)
         {
 
-            CategoryResponse? categoryResponse = await _categoriesService.GetCategoryByID(categoryUpdateRequest.ID.Value);
+            CategoryResponse? categoryResponse = await _categoriesService.GetCategoryByID(categoryUpdateRequest.ID);
 
             if (categoryResponse == null) 
             {

@@ -12,7 +12,7 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
     public class CategoryResponse
     {
         [Key]
-        public Guid? ID { get; set; }
+        public Guid ID { get; set; }
         public string? CategoryName { get; set; }
 
         public CategoryUpdateRequest ToCategoryUpdateRequest()
@@ -31,7 +31,7 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
         {
             return new CategoryResponse()
             {
-                ID = category.ID,
+                ID = category.CategoryID,
                 CategoryName = category.CategoryName,
             };
         }

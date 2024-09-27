@@ -10,7 +10,7 @@ namespace DataAccessLayer.Entities
     public class Category
     {
         [Key]
-        public Guid? ID { get; set; }
+        public Guid CategoryID { get; set; }
         public string? CategoryName { get; set; }
     }
 }

@@ -24,7 +24,7 @@
                                
                             
                                 <a asp-controller="Category" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple border-top text-dark"><i class="fas fa-shop fa-fw me-3"></i><span>Categories</span></a>
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-line fa-fw me-3"></i><span>Products</span></a>
+                                <a asp-controller="Product" asp-action="Create" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-line fa-fw me-3"></i><span>Products</span></a>
                              
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase</span></a>
                      
@@ -59,6 +59,7 @@
 
                                 </ul>
                                 <ul class="navbar-nav flex">
+                                    <li><a asp-controller="Product" asp-action="Index">Product Index</a></li>
                                     @{
                                         if (User.Identity.IsAuthenticated)
                                         {

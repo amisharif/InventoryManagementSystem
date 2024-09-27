@@ -15,3 +15,16 @@
 .panel-container{
     padding:20px;
 }
+
+.product-container{
+    margin:50px 200px 0px 200px;
+}
+.product-table-container{
+    padding: 20px;
+    margin:20px;
+}
+.input-group-addon {
+    background-color: #fcfcfc;
+    border: 1px solid #dbdbdb;
+    border-radius: 0;
+}
