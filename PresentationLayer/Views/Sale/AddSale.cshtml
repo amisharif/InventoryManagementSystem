@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Sale";
+}
+@model Sale
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading clearfix">
+                <strong>
+                    <span class="glyphicon glyphicon-th"></span>
+                    <span>All Sales</span>
+                </strong>
+                <div class="pull-right">
+                    <a href="sales.php" class="btn btn-primary">Show all sales</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <th> Category </th>
+                        <th> Product Name </th>
+                        <th> Unit Price </th>
+                        <th> Quantity </th>
+                        <th> Date</th>
+                        <th> Action</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <form asp-controller="Sale" asp-action="AddSale" method="post">
+                            <td>
+                                 <select id="lstCategory" asp-for="CategoryID" class="form-control" asp-items="@ViewBag.Categories">
+                                    <option value="">Select category</option>
+                                  </select>
+                            
+                            </td>
+                            <td>
+                               <select id="lstProduct" asp-for="ProductID" class="form-control" asp-items="@ViewBag.Products">
+                                    <option value="">Select product</option>
+                               </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" disabled value="100.00" />
+                            </td>
+                            <td>
+                                <input asp-for="Quantity" class="form-control" />
+                            </td>
+                            <td>
+                                <input asp-for="SaleDate" class="form-control" />
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Add Sale</button>
+                            </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#lstCategory').change(function () {
+            var selectedCategory = $('#lstCategory').val();
+    
+
+            var productsSelect = $('#lstProduct');
+            productsSelect.empty();
+
+            if (selectedCategory != null) {
+                $.getJSON('@Url.Action("GetProducts")', { categoryID: selectedCategory }, function (products) {
+
+                    if (products !== null) {
+                        productsSelect.append($('<option/>', {
+                            value: null,
+                            text: "Select Product"
+                        }));
+
+                        $.each(products, function (index, product) {
+                            console.log(product)
+                            productsSelect.append($('<option/>', {
+                                value: product.value,
+                                text: product.text
+                            }));
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>

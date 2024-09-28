@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="~/PresentationLayer.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="~/stylesheet.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+
+
 </head>
 <body>
     <header>
@@ -28,7 +32,8 @@
                              
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase</span></a>
                      
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-building fa-fw me-3"></i><span>Sell</span></a>
+                                <a asp-controller="Sale" asp-action="AddSale" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-building fa-fw me-3"></i><span>Sell</span></a>
+
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple  border-bottom text-dark"><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
                           
@@ -60,6 +65,7 @@
                                 </ul>
                                 <ul class="navbar-nav flex">
                                     <li><a asp-controller="Product" asp-action="Index">Product Index</a></li>
+                                    <li><a asp-controller="Sale" asp-action="Index">Sale Index</a></li>
                                     @{
                                         if (User.Identity.IsAuthenticated)
                                         {

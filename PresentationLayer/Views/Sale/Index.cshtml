@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Sales";
+}
+@model IEnumerable<Sale>
+
+<div class="p-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+
+            <div class="d-flex justify-content-between">
+                <div>
+                    <strong class="pt-2">All Sales</strong>
+                </div>
+                <div>
+                    <a asp-controller="Product" asp-action="Create" class="btn btn-primary">Add New</a>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Product Name</th>
+                        <th class="text-center">Categories</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center" style="width: 100px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+
+                        foreach (Sale sale in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@sale.Product.ProductName</td>
+                                <td class="text-center">@sale.Category?.CategoryName</td>
+                                <td class="text-center">@sale?.Quantity</td>
+                                <td class="text-center">@sale.TotalPrice</td>
+                                <td class="text-center">@sale?.SaleDate.ToString("dd MMM yyyy")</td>
+
+
+                                <td class="text-center">
+                                    <a asp-controller="Product" asp-action="Edit" asp-route-ID="@sale.SaleID"><i class="fa fa-edit"></i></a>
+                                    <a asp-controller="Product" asp-action="Delete" asp-route-ID="@sale?.SaleID"><i class="fa fa-trash text-danger"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

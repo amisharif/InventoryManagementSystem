@@ -21,6 +21,9 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
         public double BuyingPrice { get; set; }
         public double SellingPrice { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime ProductAddedTime { get; set; }
+
 
 
         //uniqueidentifier

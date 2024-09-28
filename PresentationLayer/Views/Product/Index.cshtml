@@ -7,16 +7,24 @@
 <div class="p-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong>
-                <span class="glyphicon glyphicon-th"></span>
-                <span>All Products</span>
-            </strong>
+
+
+            <div class="d-flex justify-content-between">
+                <div>
+                    <strong class="pt-2">All Products</strong>
+                 
+                </div>
+                <div>
+                    <a asp-controller="Product" asp-action="Create" class="btn btn-primary">Add New</a>
+                </div>
+            </div>
+               
+          
         </div>
         <div class="panel-body">
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
                         <th class="text-center">Product Name</th>
                         <th class="text-center">Categories</th>
                         <th class="text-center">In-Stock</th>
@@ -29,21 +37,16 @@
                 <tbody>
                     @{
 
-                        int index = 0;
+                      
                         foreach (ProductResponse product in Model)
                         {
-                            index++;
-
                             <tr>
-                                <td class="text-center">@index</td>
                                 <td class="text-center">@product.ProductName</td>
-                                <td class="text-center">@product.Category.CategoryName</td>
-                                <td class="text-center">@product.Quantity</td>
-                                <td class="text-center">@product.BuyingPrice</td>
-                                <td class="text-center">@product.SellingPrice</td>
-                                <td class="text-center">@product.ProductAddedTime?.ToString("dd MMM yyyy")</td>
-
-
+                                <td class="text-center">@product?.Category?.CategoryName</td>
+                                <td class="text-center">@product?.Quantity</td>
+                                <td class="text-center">@product?.BuyingPrice</td>
+                                <td class="text-center">@product?.SellingPrice</td>
+                                <td class="text-center">@product?.ProductAddedTime?.ToString("dd MMM yyyy")</td>
 
                                 <td class="text-center">
                                     <a asp-controller="Product" asp-action="Edit" asp-route-ID="@product.ProductID"><i class="fa fa-edit"></i></a>
