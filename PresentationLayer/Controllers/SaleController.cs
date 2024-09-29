@@ -3,6 +3,7 @@ using BusinessLogicLayer.ServiceContracts.DTO;
 using DataAccessLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PresentationLayer.Controllers
 {
@@ -11,11 +12,13 @@ namespace PresentationLayer.Controllers
         private readonly ICategoriesService _categoriesService;
         private readonly IProductsService _productsService;
         private readonly ISalesService _salesService;
-        public SaleController(ICategoriesService categoriesService, IProductsService productsService,ISalesService salesService)
+        private readonly IStocksService _stocksService;
+        public SaleController(ICategoriesService categoriesService, IProductsService productsService,ISalesService salesService, IStocksService stocksService)
         {
             _categoriesService = categoriesService;
             _productsService = productsService;
             _salesService = salesService;
+            _stocksService = stocksService;
         }
 
 
@@ -43,23 +46,36 @@ namespace PresentationLayer.Controllers
         {
 
             await _salesService.AddSale(sale);
-            return View();
+            return RedirectToAction("Index");
         }
 
 
+        //Get all stock product and return Product Name and product ID as a selectListItem
         [HttpGet]
         public async Task<ActionResult> GetProducts(string categoryID)
         {
             List<ProductResponse> products = await _productsService.GetAllProducts();
 
-         //   var filterProducts = products.Where(prod => prod.CategoryID.ToString() == categoryID).ToList();
+            //   var filterProducts = products.Where(prod => prod.CategoryID.ToString() == categoryID).ToList();
 
-            List<SelectListItem> productsSel = products.Where(prod => prod.CategoryID.ToString()==categoryID).Select(c => new SelectListItem()
+            List<Stock> stocks = await _stocksService.GetAllStockProducts();
+
+            List<SelectListItem> productsSel = stocks.Where(st => st.CategoryID.ToString()==categoryID).Select(c => new SelectListItem()
             {
-                Text = c.ProductName,
-                Value = c.ProductID.ToString()
+                Text = c.Product.ProductName,
+                Value = c.Product.ProductID.ToString()
             }).ToList();
             return Json(productsSel);
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> GetSelectedProducts(string categoryID,string productID)
+        {
+            Stock stock = await _stocksService.GetProductByCtIdProdId(categoryID, productID);
+
+            return Json(stock);
+
         }
 
 

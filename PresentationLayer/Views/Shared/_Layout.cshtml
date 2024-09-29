@@ -28,13 +28,15 @@
                                
                             
                                 <a asp-controller="Category" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple border-top text-dark"><i class="fas fa-shop fa-fw me-3"></i><span>Categories</span></a>
-                                <a asp-controller="Product" asp-action="Create" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-line fa-fw me-3"></i><span>Products</span></a>
+                                <a asp-controller="Product" asp-action="Create" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-cart-shopping fa-fw me-3"></i><span>Purchase</span></a>
                              
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase</span></a>
+                          @*       <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase</span></a> *@
                      
-                                <a asp-controller="Sale" asp-action="AddSale" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-building fa-fw me-3"></i><span>Sell</span></a>
+                                <a asp-controller="Sale" asp-action="AddSale" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-building fa-fw me-3"></i><span>Sales</span></a>
 
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
+                                <a asp-controller="Stock" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-line fa-fw me-3"></i><span>Stocks</span></a>
+
+
                                 <a href="#" class="list-group-item list-group-item-action py-2 ripple  border-bottom text-dark"><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
                           
                             </div>
@@ -64,8 +66,7 @@
 
                                 </ul>
                                 <ul class="navbar-nav flex">
-                                    <li><a asp-controller="Product" asp-action="Index">Product Index</a></li>
-                                    <li><a asp-controller="Sale" asp-action="Index">Sale Index</a></li>
+                           
                                     @{
                                         if (User.Identity.IsAuthenticated)
                                         {

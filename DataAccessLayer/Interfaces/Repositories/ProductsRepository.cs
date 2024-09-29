@@ -21,8 +21,32 @@ namespace DataAccessLayer.Interfaces.Repositories
 
         public async Task<Product> AddProduct(Product product)
         {
+
+            //get stock product by CategoryId and Product Name if scock is null add new product to the stock else update the existing stock's product
+
+            Stock? stock = await _db.Stocks.Include("Category").Include("Product").FirstOrDefaultAsync(st=>st.Category.CategoryID==product.CategoryID && st.Product.ProductName==product.ProductName);
+
+            if (stock == null)
+            {
+                Stock stocks = new Stock()
+                {
+                    StockID = Guid.NewGuid(),
+                    CategoryID = (Guid)product.CategoryID,
+                    ProductID = product.ProductID,
+                    Quantity = product.Quantity
+                };
+
+                await _db.Stocks.AddAsync(stocks);
+            }
+            else
+            {
+                stock.Quantity = stock.Quantity + product.Quantity;
+               // await _db.Stocks.AddAsync(stock);
+            }
+
             await _db.Products.AddAsync(product);
             await _db.SaveChangesAsync();
+
             return product;
         }
 

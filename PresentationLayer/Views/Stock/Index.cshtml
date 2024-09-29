@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Stock Products";
+}
+
+@model IEnumerable<Stock>
+
+
+<div class="p-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+
+            <div class="d-flex justify-content-between">
+                <div>
+                    <strong class="pt-2">All Products</strong>
+
+                </div>
+              
+            </div>
+
+
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">Product Name</th>
+                        <th class="text-center">Categories</th>
+                        <th class="text-center">In-Stock</th>
+                        <th class="text-center">Buying Price</th>
+                        <th class="text-center">Selling Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+
+                        foreach (Stock stock in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@stock.Product.ProductName</td>
+                                <td class="text-center">@stock?.Category?.CategoryName</td>
+                                <td class="text-center">@stock?.Quantity</td>
+                                <td class="text-center">@stock.Product?.BuyingPrice</td>
+                                <td class="text-center">@stock.Product?.SellingPrice</td>
+                               
+
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

@@ -9,23 +9,25 @@
     <div class="col-md-12">
         <div class="panel">
             <div class="panel-heading clearfix">
-                <strong>
-                    <span class="glyphicon glyphicon-th"></span>
-                    <span>All Sales</span>
+                <strong class="p-2">
+                    <span>Add Sale</span>
                 </strong>
-                <div class="pull-right">
+                <a asp-controller="Sale" asp-action="Index" class="float-end"> All Sales</a>
+               @*  <div class="pull-right">
                     <a href="sales.php" class="btn btn-primary">Show all sales</a>
-                </div>
+                </div >*@
             </div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
                         <th> Category </th>
                         <th> Product Name </th>
-                        <th> Unit Price </th>
-                        <th> Quantity </th>
-                        <th> Date</th>
-                        <th> Action</th>
+                        <th style="width:12%"> Selling Price </th>
+                        <th style="width:12%">Available </th>
+                        <th style="width:12%"> Quantity </th>
+                        <th style="width:12%"> Total </th>
+                        <th style="width:12%"> Date</th>
+                        <th style="width:10%"> Action</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -42,10 +44,17 @@
                                </select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" disabled value="100.00" />
+                                <input id="sPrice" type="text" class="form-control" disabled value="--" />
+                            </td>
+
+                            <td>
+                                <input id="aQuantity" type="text" class="form-control" disabled value="--" />
                             </td>
                             <td>
-                                <input asp-for="Quantity" class="form-control" />
+                                <input id="sQuantity" asp-for="Quantity" class="form-control" />
+                            </td>
+                            <td>
+                                <input id="sTotal" type="text" class="form-control" disabled value="0.00" />
                             </td>
                             <td>
                                 <input asp-for="SaleDate" class="form-control" />
@@ -65,8 +74,12 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+
+    $(document).ready(function () 
+    {
         $('#lstCategory').change(function () {
+
+            $('#sPrice').val("--")
             var selectedCategory = $('#lstCategory').val();
     
 
@@ -83,7 +96,7 @@
                         }));
 
                         $.each(products, function (index, product) {
-                            console.log(product)
+                           // console.log(product)
                             productsSelect.append($('<option/>', {
                                 value: product.value,
                                 text: product.text
@@ -93,5 +106,41 @@
                 });
             }
         });
+
+        var getProduct;
+
+        $('#lstProduct').change(function () {
+
+            var selectedCategory = $('#lstCategory').val();
+            var selectedProduct = $('#lstProduct').val()
+           
+
+
+            if (selectedCategory != "" && selectedProduct != "" ) {
+                $.getJSON('@Url.Action("GetSelectedProducts")', { categoryID: selectedCategory, productID: selectedProduct }, function (filterProduct) {
+
+                    getProduct = filterProduct
+                    if (filterProduct !== null) {
+                       
+             
+                        console.log(filterProduct.product.sellingPrice)
+                        $('#sPrice').val(filterProduct.product.sellingPrice)
+                        $('#aQuantity').val(filterProduct.quantity)
+
+                       
+                    }
+                });
+            }
+
+        })
+
+        $('#sQuantity').change(function(){
+           // alert("changed")
+            var quantity = $('#sQuantity').val();
+            console.log(quantity)
+            $('#sTotal').val(getProduct.product.sellingPrice * quantity)
+        })
+
+
     });
 </script>
