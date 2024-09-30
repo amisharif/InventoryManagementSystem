@@ -75,7 +75,7 @@ namespace PresentationLayer.Controllers
                 else
                 {
                     //Add the new user into 'User' role //optional
-                    await _userManager.AddToRoleAsync(user, UserTypeOptions.User.ToString());
+                    //await _userManager.AddToRoleAsync(user, UserTypeOptions.User.ToString());
                 }
 
 
