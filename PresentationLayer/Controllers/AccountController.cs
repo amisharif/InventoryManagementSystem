@@ -46,7 +46,7 @@ namespace PresentationLayer.Controllers
                 ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
                 return View(registerDTO);
             }
-
+            //creating new application user with user details
             ApplicationUser user = new ApplicationUser()
             {
                 Email = registerDTO.Email,

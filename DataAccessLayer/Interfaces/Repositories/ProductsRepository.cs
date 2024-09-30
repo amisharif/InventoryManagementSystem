@@ -62,6 +62,11 @@ namespace DataAccessLayer.Interfaces.Repositories
             return await _db.Products.Include("Category").ToListAsync();
         }
 
+        public async Task<List<Product>> GetFilterProducts(DateTime date)
+        {
+            return _db.Products.Include("Category").Where(pd=>pd.ProductAddedTime.Date == (date.Date)).ToList();
+        }
+
         public async Task<Product> GetProductByID(Guid ID)
         {
             Product? matchingProduct = await _db.Products.Include("Category").FirstOrDefaultAsync(temp=>temp.ProductID== ID);

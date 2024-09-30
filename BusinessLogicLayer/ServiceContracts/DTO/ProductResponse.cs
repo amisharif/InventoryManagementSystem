@@ -21,7 +21,7 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
         public double BuyingPrice { get; set; }
         public double SellingPrice { get; set; }
 
-        public DateTime? ProductAddedTime { get; set; }
+        public DateTime ProductAddedTime { get; set; }
 
         //uniqueidentifier
         public Guid? CategoryID { get; set; }

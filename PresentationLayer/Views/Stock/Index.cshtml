@@ -16,7 +16,7 @@
                     
                 </div>
                 <div>
-                    <a href="#" class="float-end"> Download Report as Pdf</a>
+                    <a asp-controller="Stock" asp-action="StocksPDF"><i class="fa fa-file-pdf h3 text-danger"></i></a>
                 </div>
               
             </div>
@@ -41,11 +41,11 @@
                         foreach (Stock stock in Model)
                         {
                             <tr>
-                                <td class="text-center">@stock.Product.ProductName</td>
+                                <td class="text-center">@stock.Product?.ProductName</td>
                                 <td class="text-center">@stock?.Category?.CategoryName</td>
                                 <td class="text-center">@stock?.Quantity</td>
-                                <td class="text-center">@stock.Product?.BuyingPrice</td>
-                                <td class="text-center">@stock.Product?.SellingPrice</td>
+                                <td class="text-center">@stock?.Product?.BuyingPrice</td>
+                                <td class="text-center">@stock?.Product?.SellingPrice</td>
                                
 
                             </tr>

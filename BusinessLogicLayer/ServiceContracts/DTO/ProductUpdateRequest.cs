@@ -20,7 +20,7 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
         public int Quantity { get; set; }
         public double BuyingPrice { get; set; }
         public double SellingPrice { get; set; }
-        public DateTime? ProductAddedTime { get; set; }
+        public DateTime ProductAddedTime { get; set; }
 
 
         //uniqueidentifier
@@ -39,6 +39,7 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
                 SellingPrice = SellingPrice,
                 CategoryID = CategoryID,
                 Category = Category,
+                ProductAddedTime = ProductAddedTime,
   
             };
         }

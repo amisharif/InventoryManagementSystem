@@ -23,7 +23,7 @@ namespace BusinessLogicLayer.Services
         {
             Product product = productAddRequest.ToProduct();
             product.ProductID = Guid.NewGuid();
-            product.ProductAddedTime = DateTime.Now;
+          //  product.ProductAddedTime = DateTime.Now;
 
             await _productsRepository.AddProduct(product);
             return product.ToProductResonse();
@@ -44,9 +44,16 @@ namespace BusinessLogicLayer.Services
         public async Task<List<ProductResponse>> GetAllProducts()
         {
             List<Product> products = await _productsRepository.GetAllProducts();
-            if (products == null || products.Count == 0) throw new ArgumentException();
+            //   if (products == null || products.Count == 0) throw new ArgumentException();
+            if (products == null) return null;
 
             return products.Select(prod=>prod.ToProductResonse()).ToList();
+        }
+
+        public async Task<List<ProductResponse>> GetFilterProducts(DateTime date)
+        {
+            List<Product> filterProducts = await _productsRepository.GetFilterProducts(date);
+            return filterProducts.Select(prod=>prod.ToProductResonse()).ToList();
         }
 
         public async Task<ProductResponse?> GetProductByID(Guid ID)

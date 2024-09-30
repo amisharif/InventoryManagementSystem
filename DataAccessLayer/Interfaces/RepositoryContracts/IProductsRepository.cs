@@ -14,5 +14,6 @@ namespace DataAccessLayer.Interfaces.RepositoryContracts
         Task<Product> GetProductByID(Guid ID);
         Task<Product> UpdateProduct(Product product);
         Task<bool> DeleteProductByID(Guid ID);
+        Task<List<Product>> GetFilterProducts(DateTime date);
     }
 }

@@ -1,8 +1,10 @@
 ﻿using BusinessLogicLayer.ServiceContracts;
 using BusinessLogicLayer.ServiceContracts.DTO;
 using DataAccessLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Rotativa.AspNetCore;
 using System.Reflection.Metadata.Ecma335;
 
 namespace PresentationLayer.Controllers
@@ -22,17 +24,31 @@ namespace PresentationLayer.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        //privides the all sales details
+        public async Task<IActionResult> Index(DateTime date)
         {
-            List<Sale> sales = await _salesService.GetAllSales();
-            return View(sales);
+
+            List<Sale> matchingSale;
+
+            if (date == DateTime.MinValue)
+            {
+                matchingSale = await _salesService.GetAllSales();
+            }
+            else
+            {
+                matchingSale = await _salesService.GetFilterSales(date);
+                return PartialView(matchingSale);
+            }
+
+           
+            return View(matchingSale);
         }
 
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddSale()
         {
             List<CategoryResponse> categories = await _categoriesService.GetAllCategories();
-
+            //sending categroy to the view with key value pair
             ViewBag.Categories = categories.Select(temp =>
               new SelectListItem() { Text = temp.CategoryName, Value = temp.ID.ToString() }
             );
@@ -41,10 +57,11 @@ namespace PresentationLayer.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddSale(Sale sale)
         {
-
+            //adding new product to the sales table
             await _salesService.AddSale(sale);
             return RedirectToAction("Index");
         }
@@ -76,6 +93,17 @@ namespace PresentationLayer.Controllers
 
             return Json(stock);
 
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> SalesPDF()
+        {
+
+            List<Sale> sales = await _salesService.GetAllSales();
+
+            return new ViewAsPdf(sales);
         }
 
 

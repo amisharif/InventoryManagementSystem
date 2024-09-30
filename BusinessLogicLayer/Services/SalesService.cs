@@ -47,5 +47,10 @@ namespace BusinessLogicLayer.Services
         {
             return await _db.Sales.Include("Category").Include("Product").OrderBy(prod=>prod.SaleDate).ToListAsync();
         }
+
+        public async Task<List<Sale>> GetFilterSales(DateTime date)
+        {
+            return _db.Sales.Where(pd => pd.SaleDate.Date == (date.Date)).ToList();
+        }
     }
 }

@@ -8,32 +8,44 @@
 
 <form method="post" asp-controller="Category" asp-action="Create">
 
-    <div class="row panel-container">
-        <div class="col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>
-                        <span class="glyphicon glyphicon-th"></span>
-                        <span>Add New Category</span>
-                    </strong>
-                </div>
-                <form>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <input type="text" asp-for="categoryAddRequest.CategoryName" class="form-control" placeholder="Category Name">
+    @{
+        if (User.IsInRole("Admin"))
+        {
+            <div class="row panel-container">
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>
+                                <span class="glyphicon glyphicon-th"></span>
+                                <span>Add New Category</span>
+                            </strong>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Add Category</button>
+                        <form>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input type="text" asp-for="categoryAddRequest.CategoryName" class="form-control" placeholder="Category Name">
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Add Category</button>
+                            </div>
+                        </form>
+
                     </div>
-                </form>
-                   
+                </div>
+
+                <div class="col-md-7">
+
+                    @await Html.PartialAsync("_CategoryTable")
+
+                </div>
             </div>
-        </div>
-
-        <div class="col-md-7">
-
-            @await Html.PartialAsync("_CategoryTable")
-          
-        </div>
-    </div>
+        }
+        else
+        {
+            <div class="w-50 mx-auto">
+                @await Html.PartialAsync("_CategoryTable")
+            </div>
+        }
+    }
+  
 
 </form>

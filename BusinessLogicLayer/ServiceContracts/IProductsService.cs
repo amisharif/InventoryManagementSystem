@@ -15,6 +15,7 @@ namespace BusinessLogicLayer.ServiceContracts
         Task<ProductResponse?> GetProductByID(Guid ID);
         Task<ProductResponse?> UpdateProduct(ProductUpdateRequest productUpdateRequest);
         Task<bool> DeleteProductByID(Guid ID);
+        Task<List<ProductResponse>> GetFilterProducts(DateTime date);
 
     }
 }

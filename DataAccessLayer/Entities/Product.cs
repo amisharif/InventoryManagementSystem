@@ -29,6 +29,7 @@ namespace DataAccessLayer.Entities
         [Range(0.01, double.MaxValue, ErrorMessage = "Enter a valid price")]
         public double SellingPrice { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime ProductAddedTime { get; set; }
 
 

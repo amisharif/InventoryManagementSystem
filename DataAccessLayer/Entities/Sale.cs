@@ -22,8 +22,8 @@ namespace DataAccessLayer.Entities
         public Guid ProductID { get; set; }
         [ForeignKey("ProductID")]
         public Product? Product { get; set; }
-        
- 
+
+        [Range(1, Int32.MaxValue, ErrorMessage = "Enter a valid quantity")]
         public int Quantity { get; set; }
         public double TotalPrice { get; set; }
 

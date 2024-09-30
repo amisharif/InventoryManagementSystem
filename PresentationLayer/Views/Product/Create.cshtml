@@ -17,19 +17,27 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label asp-for="ProductName">Product Name</label>
                             <input asp-for="ProductName" class="form-control">
                             <span class="text-danger" asp-validation-for="ProductName"></span>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label asp-for="CategoryID">Select Category</label>
                             <select asp-for="CategoryID" class="form-control" asp-items="@ViewBag.Categories">
                                 <option value="">Select category</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label asp-for="ProductAddedTime">Date</label>
+                            <input asp-for="ProductAddedTime" class="form-control">
+                            <span class="text-danger" asp-validation-for="ProductAddedTime"></span>
+                           
                         </div>
                     </div>
                     <div class="col-4 mt-4">

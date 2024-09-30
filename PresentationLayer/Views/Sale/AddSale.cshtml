@@ -12,7 +12,7 @@
                 <strong class="p-2">
                     <span>Add Sale</span>
                 </strong>
-                <a asp-controller="Sale" asp-action="Index" class="float-end"> All Sales</a>
+                <a  asp-controller="Sale" asp-action="Index" class="float-end card-text"> All Sales</a>
                @*  <div class="pull-right">
                     <a href="sales.php" class="btn btn-primary">Show all sales</a>
                 </div >*@
@@ -23,10 +23,10 @@
                         <th> Category </th>
                         <th> Product Name </th>
                         <th style="width:12%"> Selling Price </th>
-                        <th style="width:12%">Available </th>
-                        <th style="width:12%"> Quantity </th>
+                        <th style="width:10%">Available </th>
+                        <th style="width:10%"> Quantity </th>
                         <th style="width:12%"> Total </th>
-                        <th style="width:12%"> Date</th>
+                        <th style="width:10%"> Date</th>
                         <th style="width:11%"> Action</th>
                     </thead>
                     <tbody>
@@ -123,7 +123,7 @@
                     if (filterProduct !== null) {
                        
              
-                        console.log(filterProduct.product.sellingPrice)
+                       // console.log(filterProduct.product.sellingPrice)
                         $('#sPrice').val(filterProduct.product.sellingPrice)
                         $('#aQuantity').val(filterProduct.quantity)
 
@@ -137,8 +137,19 @@
         $('#sQuantity').change(function(){
            // alert("changed")
             var quantity = $('#sQuantity').val();
-            console.log(quantity)
-            $('#sTotal').val(getProduct.product.sellingPrice * quantity)
+
+           // console.log(getProduct.quantity)
+
+            if (quantity <= 0 || quantity > getProduct.quantity) {
+                alert("Enter a valid quanity");
+                $('#sQuantity').val(1)
+                $('#sTotal').val(getProduct.product.sellingPrice * 1)
+            }else{
+                //console.log(quantity)
+                $('#sTotal').val(getProduct.product.sellingPrice * quantity)
+            }
+
+           
         })
 
 

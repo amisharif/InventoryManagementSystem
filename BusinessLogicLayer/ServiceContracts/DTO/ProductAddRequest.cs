@@ -34,7 +34,7 @@ namespace BusinessLogicLayer.ServiceContracts.DTO
 
         public Product ToProduct()
         {
-            return new Product { ProductID = ProductID, ProductName = ProductName, Quantity = Quantity, BuyingPrice = BuyingPrice, SellingPrice = SellingPrice,CategoryID=CategoryID };
+            return new Product { ProductID = ProductID, ProductName = ProductName, Quantity = Quantity, BuyingPrice = BuyingPrice, SellingPrice = SellingPrice,CategoryID=CategoryID,ProductAddedTime=ProductAddedTime };
         }
     }
 }

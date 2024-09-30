@@ -11,5 +11,7 @@ namespace BusinessLogicLayer.ServiceContracts
     {
         Task<Sale> AddSale(Sale sale);
         Task<List<Sale>> GetAllSales();
+
+        Task<List<Sale>> GetFilterSales(DateTime date);
     }
 }

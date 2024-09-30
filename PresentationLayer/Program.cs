@@ -58,6 +58,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

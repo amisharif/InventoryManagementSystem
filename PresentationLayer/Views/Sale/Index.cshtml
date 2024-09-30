@@ -3,60 +3,103 @@
 }
 @model IEnumerable<Sale>
 
-<div class="p-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
+<div class="main-container">
+
+    <div class="p-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+
+                <div class="row mx-2">
+                    <div class="col-6 mt-1">
+                        <strong>Sales History </strong>
+                    </div>
+                    <div class="col-6 text-end">
+                        <div class="row">
+                            <div class="col-7">
+                                @{
+                                    if (User.IsInRole("Admin"))
+                                    {
+                                        <a asp-controller="Sale" asp-action="AddSale" class="btn btn-primary">Add New</a>
+                                    }
+                                }
+                            </div>
+                            <div class="col-4">
+                                <input id="selectedDate" class="form-control" type="date" />
+                            </div>
+                            <div class="col-1 mt-1">
+                                <a asp-controller="Sale" asp-action="SalesPDF"><i class="fa fa-file-pdf h3 text-danger"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-            <div class="d-flex justify-content-between">
-                <div>
-                    <strong class="pt-2">All Sales</strong>
-                </div>
-                <div>
-                    <a asp-controller="Sale" asp-action="AddSale" class="btn btn-primary">Add New</a>
-                </div>
             </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Product Name</th>
+                            <th class="text-center">Categories</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Total</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center" style="width: 100px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
 
 
-        </div>
-        <div class="panel-body">
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center">Product Name</th>
-                        <th class="text-center">Categories</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Total</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center" style="width: 100px;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
+                            foreach (Sale sale in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@sale?.Product?.ProductName</td>
+                                    <td class="text-center">@sale?.Category?.CategoryName</td>
+                                    <td class="text-center">@sale?.Quantity</td>
+                                    <td class="text-center">@sale?.TotalPrice</td>
+                                    <td class="text-center">@sale?.SaleDate.ToString("dd MMM yyyy")</td>
 
 
-                        foreach (Sale sale in Model)
-                        {
-                            <tr>
-                                <td class="text-center">@sale.Product.ProductName</td>
-                                <td class="text-center">@sale.Category?.CategoryName</td>
-                                <td class="text-center">@sale?.Quantity</td>
-                                <td class="text-center">@sale.TotalPrice</td>
-                                <td class="text-center">@sale?.SaleDate.ToString("dd MMM yyyy")</td>
+                                    <td class="text-center">
+                                        <a asp-controller="Product" asp-action="Edit" asp-route-ID="@sale.SaleID"><i class="fa fa-edit"></i></a>
+                                        <a asp-controller="Product" asp-action="Delete" asp-route-ID="@sale?.SaleID"><i class="fa fa-trash text-danger"></i></a>
 
-
-                                <td class="text-center">
-                                    <a asp-controller="Product" asp-action="Edit" asp-route-ID="@sale.SaleID"><i class="fa fa-edit"></i></a>
-                                    <a asp-controller="Product" asp-action="Delete" asp-route-ID="@sale?.SaleID"><i class="fa fa-trash text-danger"></i></a>
-
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            }
                         }
-                    }
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 
+
+<script>
+
+    $('#selectedDate').change(function(){
+
+        var date = $('#selectedDate').val();
+        console.log(date)
+        //alert("Changed");
+
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("Index", "Sale")',
+            data: { date },
+            dataType: "text",
+            success: function (response) {
+                //console.log(response);
+                $('.main-container').html(response)
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('Error:', textStatus, errorThrown);
+            }
+        });
+
+    })
+</script>
