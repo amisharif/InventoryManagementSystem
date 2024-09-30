@@ -14,7 +14,9 @@ It will create the following table:
 5.Asp.NetUsers.
 6.Asp.NetRoles.
 
----------------------------------------------------Registration and Login---------------------------------------------------
+--------------------------------------------------Registration and Login---------------------------------------------------
+// Password must contain one Upper case on lower case one numeric value and one special character
+//Example : Sharif@1
 
 1.Registration: User can register as an admin or can register as a general user by providing the require information.
 2.Login with your registered email and password
