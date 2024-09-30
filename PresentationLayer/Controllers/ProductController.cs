@@ -2,12 +2,14 @@
 using BusinessLogicLayer.ServiceContracts.DTO;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Interfaces.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata.Ecma335;
 
 namespace PresentationLayer.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class ProductController : Controller
     {
         private readonly ICategoriesService _categoriesService;

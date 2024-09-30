@@ -1,121 +1,127 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PresentationLayer</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PresentationLayer.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="~/stylesheet.css" rel="stylesheet" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - PresentationLayer</title>
+         
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/PresentationLayer.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="~/stylesheet.css" rel="stylesheet" />
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
 
 
-</head>
-<body>
-    <header>
-       
-    </header>
-    <div class="mx-auto" style="width:95%">
-        <main role="main" class="pb-3">
-            <div class="row">
-                <div class="col-2 bg-light">
-                    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-                        <div class="position-sticky">
-                            <div class="list-group list-group-flush mx-3 " style="padding-top:70px;padding-bottom:500px">
-                               
-                            
-                                <a asp-controller="Category" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple border-top text-dark"><i class="fas fa-shop fa-fw me-3"></i><span>Categories</span></a>
-                                <a asp-controller="Product" asp-action="Create" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-cart-shopping fa-fw me-3"></i><span>Purchase</span></a>
-                             
-                          @*       <a href="#" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase</span></a> *@
-                     
-                                <a asp-controller="Sale" asp-action="AddSale" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-building fa-fw me-3"></i><span>Sales</span></a>
-
-                                <a asp-controller="Stock" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-line fa-fw me-3"></i><span>Stocks</span></a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 
 
-                                <a href="#" class="list-group-item list-group-item-action py-2 ripple  border-bottom text-dark"><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
-                          
+    </head>
+    <body>
+
+        <div class="mx-auto" style="width:95%">
+            <main role="main" class="pb-3">
+                <div class="row">
+                    <div class="col-2 bg-light">
+
+                        <nav  class="collapse d-lg-block  bg-white">
+                            <div class="position-sticky">
+                                <div class="list-group list-group-flush mx-3 " style="padding-top:70px;padding-bottom:500px">
+
+                                    <a asp-controller="Category" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple border-top text-dark"><i class="fas fa-shop fa-fw me-3"></i><span>Categories</span></a>
+
+                                    <a id="purchase" asp-controller="Product" asp-action="Create" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-shopping-cart fa-fw me-3"></i><span>Purchase</span> </a>
+
+
+                                    <a asp-controller="Sale" asp-action="AddSale" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-building fa-fw me-3"></i><span>Sales</span></a>
+
+                                    <a asp-controller="Stock" asp-action="Index" class="list-group-item list-group-item-action py-2 ripple text-dark"><i class="fas fa-chart-line fa-fw me-3"></i><span>Stocks</span></a>
+
+                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple  border-bottom text-dark"><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
+
+                                </div>
                             </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="col-10 p-0">
-                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
-                        <div class="container-fluid">
-                           
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                                <ul class="navbar-nav flex">
-                                    <li class="nav-item">
-                                        <a href="#"><h4 class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inventory</h4></a>
-                                    </li>
-                                 @*    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Create</a>
-                                    </li> *@
+                        </nav>
 
 
-                                </ul>
-                                <ul class="navbar-nav flex">
-                           
-                                    @{
-                                        if (User.Identity.IsAuthenticated)
+                    </div>
+                    <div class="col-10">
+                        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
+                            <div class="container-fluid">
+
+                                
+                                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                    <ul class="navbar-nav flex">
+                                        <li class="nav-item">
+                                            <a href="#"><h4 class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inventory</h4></a>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="navbar-nav flex">
+                                        @if (User.Identity.IsAuthenticated)
                                         {
-
-                                            if (User.IsInRole("Admin"))
-                                            {
-                                                <li><a asp-controller="Home" asp-action="Index" asp-area="Admin">Admin Home</a></li>
-                                            }
-
-                                            <li class="nav-item">
-                                                <i class="fa-solid fa-user"></i>
-                                                <a class="nav-link text-dark">@User.Identity?.Name</a>
+                                            <li class="nav-item nav-link text-dark">
+                                                <i class="fa-solid fa-user px-1"></i>@User.Identity?.Name
                                             </li>
-                                            <li class="nav-item"> <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-
+                                                <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Logout</a>
+                                            </li>
                                         }
-
                                         else
                                         {
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                                            </li>
+                                            @if (ViewBag.CurrentUrl == "~/Account/Register")
+                                            {
+                                                <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register" class="nav-active">Register</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                        <li class="nav-item">
+                                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                                                </li>
+                                            }
+
+
+                                            @if (ViewBag.CurrentUrl == "~/Account/Login")
+                                            {
+                                                          <li>
+                                                           <a class="nav-link text-dark" asp-controller="Account" asp-action="Login" class="nav-active">Login</a>
+                                                          </li>
+                                            }
+                                            else
+                                            {
+                                                          <li>
+                                                                   <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                                                          </li>
+                                            }
 
                                         }
-                                    }
-
-                                </ul>
+                                   </ul>
+                                </div>
                             </div>
-                        </div>
-                    </nav>
-                    
-                    @RenderBody()
-                </div>
-            </div>
-           
-        </main>
-    </div>
+                        </nav>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - PresentationLayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    @RenderBody()
+                    </div>
+                </div>
+
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2024 - PresentationLayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
+    </body>
 </html>
+

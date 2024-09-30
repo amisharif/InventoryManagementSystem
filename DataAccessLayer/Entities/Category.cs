@@ -11,6 +11,8 @@ namespace DataAccessLayer.Entities
     {
         [Key]
         public Guid CategoryID { get; set; }
+
+        [Required(ErrorMessage ="Enter a category name")]
         public string? CategoryName { get; set; }
     }
 }

@@ -19,12 +19,14 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <input asp-for="ProductName" class="form-control" placeholder="Product Name">
+                            <label asp-for="ProductName">Product Name</label>
+                            <input asp-for="ProductName" class="form-control">
+                            <span class="text-danger" asp-validation-for="ProductName"></span>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-           
+                            <label asp-for="CategoryID">Select Category</label>
                             <select asp-for="CategoryID" class="form-control" asp-items="@ViewBag.Categories">
                                 <option value="">Select category</option>
                             </select>
@@ -32,17 +34,23 @@
                     </div>
                     <div class="col-4 mt-4">
                         <div class="form-group">
-                            <input asp-for="Quantity" class="form-control" placeholder="Quantity">
+                            <label asp-for="Quantity">Quantity</label>
+                            <input asp-for="Quantity" class="form-control">
+                            <span class="text-danger" asp-validation-for="Quantity"></span>
                         </div>
                     </div>
                     <div class="col-4 mt-4">
                         <div class="form-group">
-                            <input asp-for="BuyingPrice" class="form-control" placeholder="Buying Price">
+                            <label asp-for="BuyingPrice">Buying Price</label>
+                            <input asp-for="BuyingPrice" class="form-control" >
+                            <span class="text-danger" asp-validation-for="BuyingPrice"></span>
                         </div>
                     </div>
                     <div class="col-4 mt-4">
                         <div class="form-group">
-                            <input asp-for="SellingPrice" class="form-control" placeholder="Selling Price">
+                            <label asp-for="SellingPrice">Selling price</label>
+                            <input asp-for="SellingPrice" class="form-control">
+                            <span class="text-danger" asp-validation-for="SellingPrice"></span>
                         </div>
                     </div>
                 </div>

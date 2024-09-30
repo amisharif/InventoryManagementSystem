@@ -62,8 +62,8 @@ namespace PresentationLayer.Controllers
 
             List<SelectListItem> productsSel = stocks.Where(st => st.CategoryID.ToString()==categoryID).Select(c => new SelectListItem()
             {
-                Text = c.Product.ProductName,
-                Value = c.Product.ProductID.ToString()
+                Text = c.Product?.ProductName,
+                Value = c.Product?.ProductID.ToString()
             }).ToList();
             return Json(productsSel);
         }

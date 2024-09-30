@@ -17,6 +17,7 @@ namespace PresentationLayer.Controllers
 
         public async Task<IActionResult> Index()
         {
+           
 
             List<CategoryResponse> categories = await _categoriesService.GetAllCategories();
             CategoryViewModel viewModel = new CategoryViewModel();

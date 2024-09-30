@@ -15,11 +15,20 @@ namespace DataAccessLayer.Entities
         public Guid ProductID { get; set; }
 
         [StringLength(40)] //nvarchar(40)
+        [Required(ErrorMessage ="Enter a product name")]
         public string? ProductName { get; set; }
 
+        [Range(1, Int32.MaxValue, ErrorMessage = "Enter a valid quantity")]
         public int Quantity { get; set; }
+
+        [Required(ErrorMessage ="Buying price is required")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Enter a valid price")]
         public double BuyingPrice { get; set; }
+
+        [Required(ErrorMessage = "Selling price is required")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Enter a valid price")]
         public double SellingPrice { get; set; }
+
         public DateTime ProductAddedTime { get; set; }
 
 
